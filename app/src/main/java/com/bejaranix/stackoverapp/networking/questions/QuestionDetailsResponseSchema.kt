@@ -1,8 +1,8 @@
-package com.bejaranix.stackoverapp.networking
+package com.bejaranix.stackoverapp.networking.questions
 
 import com.google.gson.annotations.SerializedName
 
-data class QuestionsListResponseSchema(
+class QuestionDetailsResponseSchema (
     @SerializedName("items")
     val mQuestions:List<QuestionSchema>
 )

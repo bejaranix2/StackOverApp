@@ -1,4 +1,4 @@
-package com.bejaranix.stackoverapp.networking
+package com.bejaranix.stackoverapp.networking.users
 
 import com.google.gson.annotations.SerializedName
 

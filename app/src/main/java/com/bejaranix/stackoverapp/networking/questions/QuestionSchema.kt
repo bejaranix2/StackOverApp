@@ -1,5 +1,6 @@
-package com.bejaranix.stackoverapp.networking
+package com.bejaranix.stackoverapp.networking.questions
 
+import com.bejaranix.stackoverapp.networking.users.UserSchema
 import com.google.gson.annotations.SerializedName
 
 data class QuestionSchema(
@@ -14,6 +15,6 @@ data class QuestionSchema(
     val mBody:String,
 
     @SerializedName("owner")
-    val mOwner:UserSchema
+    val mOwner: UserSchema
 
 )

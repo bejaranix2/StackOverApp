@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">StackOverApp</string>
     <string name="error_network_call_failed">network call failed</string>
+    <string name="questions_list_screen_title">Questions list</string>
+
+
+    <string name="location_displayed">Location</string>
+    <string name="hambuger_clicked">Hamburger</string>
+    <string name="drawer_menu_item_questions_list">Latest question</string>
+
 </resources>
