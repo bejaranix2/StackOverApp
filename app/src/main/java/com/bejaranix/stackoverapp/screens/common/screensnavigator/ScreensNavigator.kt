@@ -1,15 +1,20 @@
 package com.bejaranix.stackoverapp.screens.common.screensnavigator
 
-import android.content.Context
-import com.bejaranix.stackoverapp.screens.questiondetails.QuestionDetailsActivity
-import com.bejaranix.stackoverapp.screens.questionslist.QuestionsListActivity
+import androidx.fragment.app.FragmentManager
+import com.bejaranix.stackoverapp.screens.common.controller.FragmentFrameWrapper
+import com.bejaranix.stackoverapp.screens.common.fragmentframehelper.FragmentFrameHelper
+import com.bejaranix.stackoverapp.screens.questiondetails.QuestionDetailsFragment
+import com.bejaranix.stackoverapp.screens.questionslist.QuestionsListFragment
 
-class ScreensNavigator(private val context: Context) {
-    fun toDialogDetails(questionId: String) {
-        QuestionDetailsActivity.start(context,questionId)
-    }
+class ScreensNavigator(
+    private val mFragmentFrameHelper: FragmentFrameHelper
+) {
+    fun toQuestionDetails(questionId: String) =
+        mFragmentFrameHelper.replaceFragment(QuestionDetailsFragment.newInstance(questionId))
 
-    fun toQuestionsListClearTop() {
-        QuestionsListActivity.startClearTop(context)
-    }
+    fun toQuestionsList() =
+        mFragmentFrameHelper.replaceFragmentAndClearBackstack(QuestionsListFragment.newInstance())
+
+    fun navigateUp() =
+        mFragmentFrameHelper.navigateUp()
 }

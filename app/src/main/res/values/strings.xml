@@ -1,11 +1,30 @@
 <resources>
     <string name="app_name">StackOverApp</string>
-    <string name="error_network_call_failed">network call failed</string>
+    <string name="error_network_call_failed_title">Oops</string>
+    <string name="error_network_call_failed_message">network call failed</string>
+    <string name="error_network_call_failed_button_caption">OK</string>
     <string name="questions_list_screen_title">Questions list</string>
 
 
     <string name="location_displayed">Location</string>
     <string name="hambuger_clicked">Hamburger</string>
     <string name="drawer_menu_item_questions_list">Latest question</string>
+    <string name="title_activity_main">MainActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="error_network_call_failed">Network call failed</string>
+    <string name="error_network_call_failed_positive_button_caption">Retry</string>
+    <string name="error_network_call_failed_negative_button_caption">Close</string>
+    <string name="permission_dialog_title">Permission dialog</string>
+    <string name="permission_dialog_granted_message">Permission granted</string>
+    <string name="permission_dialog_button_caption">OK</string>
+    <string name="permission_dialog_cant_ask_more_message">Permission declined and can\'t ask anymore</string>
+    <string name="permission_dialog_permission_declined_message">Permission declined</string>
 
 </resources>

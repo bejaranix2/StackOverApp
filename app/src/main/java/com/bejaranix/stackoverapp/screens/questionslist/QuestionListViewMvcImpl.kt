@@ -10,13 +10,12 @@ import com.bejaranix.stackoverapp.R
 import com.bejaranix.stackoverapp.questions.Question
 import com.bejaranix.stackoverapp.screens.common.views.BaseObservableViewMvc
 import com.bejaranix.stackoverapp.screens.common.ViewMvcFactory
-import com.bejaranix.stackoverapp.screens.common.navdrawer.BaseNavDrawerViewMvc
-import com.bejaranix.stackoverapp.screens.common.navdrawer.DrawerItems
+import com.bejaranix.stackoverapp.screens.common.navdrawer.NavDrawerHelper
 import com.bejaranix.stackoverapp.screens.common.toastshelper.ToastsHelper
 import com.bejaranix.stackoverapp.screens.common.toolbar.ToolbarViewMvc
 import com.google.android.material.appbar.MaterialToolbar
 
-class QuestionListViewMvcImpl : BaseNavDrawerViewMvc<QuestionListViewMvc.Listener>,
+class QuestionListViewMvcImpl : BaseObservableViewMvc<QuestionListViewMvc.Listener>,
     QuestionRecyclerAdapter.Listener, QuestionListViewMvc, ToolbarViewMvc.HamburgerListener,
     ToolbarViewMvc.LocationListener {
 
@@ -26,14 +25,15 @@ class QuestionListViewMvcImpl : BaseNavDrawerViewMvc<QuestionListViewMvc.Listene
     private var mQuestionsListAdapter: QuestionRecyclerAdapter
     private var mListQuestions: RecyclerView
     private val mToastsHelper: ToastsHelper
-
+    private val mNavDrawerHelper: NavDrawerHelper
 
     constructor(
         inflater: LayoutInflater,
         parent: ViewGroup?,
         viewMvcFactory: ViewMvcFactory,
-        toastsHelper: ToastsHelper
-    ) : super(inflater,parent) {
+        toastsHelper: ToastsHelper,
+        navDrawerHelper: NavDrawerHelper
+    )  {
 
         rootView = inflater.inflate(R.layout.layout_questions_list, parent, false)
         mListQuestions = findViewById(R.id.lst_questions)
@@ -44,6 +44,7 @@ class QuestionListViewMvcImpl : BaseNavDrawerViewMvc<QuestionListViewMvc.Listene
         mListQuestions.adapter = mQuestionsListAdapter
         mToolbar = rootView.findViewById(R.id.app_bar_layout)
         mToolbarViewMvc = viewMvcFactory.getToolbarViewMvc(mToolbar)
+        mNavDrawerHelper = navDrawerHelper
         configureToolbar()
     }
 
@@ -52,7 +53,7 @@ class QuestionListViewMvcImpl : BaseNavDrawerViewMvc<QuestionListViewMvc.Listene
         mToolbar.addView(mToolbarViewMvc.rootView)
         mToolbarViewMvc.enableHamburgerButtonAndListen(this)
         mToolbarViewMvc.enableLocationButtonAndListen(this)
-        mToolbar.navigationIcon = null;          // to hide Navigation icon
+        mToolbar.navigationIcon = null      // to hide Navigation icon
     }
 
 
@@ -72,19 +73,11 @@ class QuestionListViewMvcImpl : BaseNavDrawerViewMvc<QuestionListViewMvc.Listene
     }
 
     override fun onHamburgerClicked() {
-        showDrawer = true
+        mNavDrawerHelper.showDrawer(true)
     }
 
     override fun onLocationClicked() {
         mToastsHelper.showToast(R.string.location_displayed)
-    }
-
-    override fun onDrawerItemClicked(questionsList: DrawerItems) {
-        getListeners().forEach {
-            when(questionsList){
-                DrawerItems.QUESTIONS_LIST -> it.onQuestionsListClicked()
-            }
-        }
     }
 
 }

@@ -1,4 +1,4 @@
-package com.bejaranix.stackoverapp.screens.questionslist.questionslistitem;
+package com.bejaranix.stackoverapp.screens.questionslist.questionslistitem
 
 import com.bejaranix.stackoverapp.questions.Question
 import com.bejaranix.stackoverapp.screens.common.views.ObservableViewMvc

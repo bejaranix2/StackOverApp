@@ -8,14 +8,13 @@ import android.widget.TextView
 import com.bejaranix.stackoverapp.R
 import com.bejaranix.stackoverapp.questions.QuestionDetails
 import com.bejaranix.stackoverapp.screens.common.ViewMvcFactory
-import com.bejaranix.stackoverapp.screens.common.navdrawer.BaseNavDrawerViewMvc
-import com.bejaranix.stackoverapp.screens.common.navdrawer.DrawerItems
 import com.bejaranix.stackoverapp.screens.common.toastshelper.ToastsHelper
 import com.bejaranix.stackoverapp.screens.common.toolbar.ToolbarViewMvc
+import com.bejaranix.stackoverapp.screens.common.views.BaseObservableViewMvc
 import com.google.android.material.appbar.MaterialToolbar
 
-class QuestionDetailsViewMvcImpl: BaseNavDrawerViewMvc<QuestionDetailsViewMvc.Listener>, QuestionDetailsViewMvc,
-    ToolbarViewMvc.NavigateUpListener {
+class QuestionDetailsViewMvcImpl: BaseObservableViewMvc<QuestionDetailsViewMvc.Listener>, QuestionDetailsViewMvc,
+    ToolbarViewMvc.NavigateUpListener, ToolbarViewMvc.LocationListener {
 
     private val titleDetails: TextView
     private val bodyDetails: TextView
@@ -27,7 +26,7 @@ class QuestionDetailsViewMvcImpl: BaseNavDrawerViewMvc<QuestionDetailsViewMvc.Li
     constructor(inflater: LayoutInflater,
                 parent: ViewGroup?,
                 viewMvcFactory: ViewMvcFactory,
-                toastsHelper: ToastsHelper) : super(inflater, parent) {
+                toastsHelper: ToastsHelper) {
         rootView = inflater.inflate(R.layout.activity_question_details, parent, false)
         titleDetails = findViewById(R.id.title_details)
         bodyDetails = findViewById(R.id.body_details)
@@ -42,6 +41,7 @@ class QuestionDetailsViewMvcImpl: BaseNavDrawerViewMvc<QuestionDetailsViewMvc.Li
         mToolbarViewMvc.setText(getString(R.string.questions_list_screen_title))
         mToolbar.addView(mToolbarViewMvc.rootView)
         mToolbarViewMvc.enableBackButtonAndListen(this)
+        mToolbarViewMvc.enableLocationButtonAndListen(this)
     }
 
 
@@ -61,11 +61,9 @@ class QuestionDetailsViewMvcImpl: BaseNavDrawerViewMvc<QuestionDetailsViewMvc.Li
         }
     }
 
-    override fun onDrawerItemClicked(questionsList: DrawerItems) {
-        getListeners().forEach {
-            when(questionsList){
-                DrawerItems.QUESTIONS_LIST -> it.onQuestionsListClicked()
-            }
+    override fun onLocationClicked() {
+        getListeners().forEach{
+            it.onLocationClicked()
         }
     }
 
